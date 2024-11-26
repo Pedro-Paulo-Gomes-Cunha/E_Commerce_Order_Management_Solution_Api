@@ -16,6 +16,8 @@ namespace Domain.DBOs
 		public double Total { get; set;}
 		public string status { get; set; }
 
+		public virtual IEnumerable<ProductDbo> Produtc_lists { get; set; }
+
 		public OrderDbo() { }
 
 		public OrderDbo(Guid id, Guid clientId, double total, string _status)
@@ -27,6 +29,8 @@ namespace Domain.DBOs
 		}
 		public OrderDto toDto()
 		{
+			var dto=new OrderDto(Id, ClientId, Total, status);
+			dto.Produtc_lists = Produtc_lists.Select(x => x.ToDto());
 			return new OrderDto(Id, ClientId, Total, status);
 		}
 	}

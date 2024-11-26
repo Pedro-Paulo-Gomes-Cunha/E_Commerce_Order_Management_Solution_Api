@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "JCqYKgNoVs0i8LFW6Fw7rCUy2mgeWPE2zRQx8ClRuzmPjswID2sl5VY6Nu745m4KSFq3/vb9M2vYkuqy1cNGvw==",
+  "dgSpecHash": "y9DSRW4IaRRekDh6U3BowS/RynvMqATaP9QgLokEhI6yLpS2bGiJ5qQieiFseNLSPZT9cnEvLTrsyAgH7yjBOg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pedro Gomez\\Desktop\\CENTRO MADALUISA\\UCALL - Teste\\E-Commerce-Solution\\Domain\\Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Pedro Gomez\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Pedro Gomez\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.8\\pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
+    "C:\\Users\\Pedro Gomez\\.nuget\\packages\\stackexchange.redis\\2.7.33\\stackexchange.redis.2.7.33.nupkg.sha512",
+    "C:\\Users\\Pedro Gomez\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -6,6 +6,7 @@ using RabbitMQ.Client;
 using Newtonsoft.Json;
 using System.Text;
 using RabbitMQ.Client.Events;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace E_Comerce_Web_Api.Controllers
 {
@@ -23,7 +24,7 @@ namespace E_Comerce_Web_Api.Controllers
 		{
 			_service = service;
 			var factory = new ConnectionFactory() { HostName = "5.189.132.68", UserName = "dev", Password = "d3v12345"
-			}; //host 
+			}; 
 			_connection = factory.CreateConnection();
 			_channel = _connection.CreateModel();
 			_channel.QueueDeclare(queue: "orders", durable: false, exclusive: false, autoDelete: false, arguments: null);
@@ -39,6 +40,13 @@ namespace E_Comerce_Web_Api.Controllers
 				{
 					var body = event_.Body.ToArray();
 					var message = Encoding.UTF8.GetString(body);
+					//Update
+					var modell = (OrderDto)JsonConvert.DeserializeObject(message);
+					if(modell != null)
+					{
+						modell.status = "Concluido";
+						_service.Update(modell);
+					}
 				};
 				_channel.BasicConsume(queue: "orders", autoAck: true, consumer: consumer);
 
@@ -71,7 +79,6 @@ namespace E_Comerce_Web_Api.Controllers
 				return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
 
 			}
-
 		}
 
 		[HttpPut()]
@@ -79,7 +86,11 @@ namespace E_Comerce_Web_Api.Controllers
 		{
 			try
 			{
-				_service.Update(data);
+				//_service.Update(data);
+
+				var jsonMessage = JsonConvert.SerializeObject(data);
+				var body = Encoding.UTF8.GetBytes(jsonMessage);
+				_channel.BasicPublish(exchange: "", routingKey: "orders", basicProperties: null, body: body);
 
 				return Ok(data);
 			}

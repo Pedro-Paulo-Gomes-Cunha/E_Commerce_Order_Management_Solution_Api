@@ -93,12 +93,29 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("OrderDboId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OrderDboId");
+
                     b.ToTable("produts");
+                });
+
+            modelBuilder.Entity("Domain.DBOs.ProductDbo", b =>
+                {
+                    b.HasOne("Domain.DBOs.OrderDbo", null)
+                        .WithMany("Produtc_lists")
+                        .HasForeignKey("OrderDboId");
+                });
+
+            modelBuilder.Entity("Domain.DBOs.OrderDbo", b =>
+                {
+                    b.Navigation("Produtc_lists");
                 });
 #pragma warning restore 612, 618
         }

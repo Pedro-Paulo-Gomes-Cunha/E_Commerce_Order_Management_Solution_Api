@@ -16,6 +16,7 @@ namespace Domain.DTOs
 		public double Total { get; set;}
 		public string status { get; set; }
 
+		public IEnumerable<ProductDto> Produtc_lists { get; set; }	
 		public OrderDto() { }
 
 		public OrderDto(Guid id, Guid clientId, double total, string _status)
