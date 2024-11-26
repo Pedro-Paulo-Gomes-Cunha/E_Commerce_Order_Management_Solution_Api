@@ -1,4 +1,23 @@
-var builder = WebApplication.CreateBuilder(args);
+using E_Comerce_Web_Api;
+
+
+using Autofac.Extensions.DependencyInjection;
+public class Program
+{
+	public static void Main(string[] args)
+	{
+		CreateHostBuilder(args).Build().Run();
+	}
+
+	public static IHostBuilder CreateHostBuilder(string[] args) =>
+		Host.CreateDefaultBuilder(args)
+			.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+			.ConfigureWebHostDefaults(webBuilder =>
+			{
+				webBuilder.UseStartup<Startup>();
+			});
+}
+/*var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
@@ -22,4 +41,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+app.Run();*/
